@@ -15,7 +15,7 @@ Phase: [Base/Build/Peak/Taper/Recovery]
 
 Compliance: [X/X] sessions completed
 Planned TSS: [XXX] | Actual TSS: [XXX] ([XX]%)
-Hours: [XX.X]h (prev week: [XX.X]h)
+Hours: [XhYm] (prev week: [XhYm])
 
 Session Breakdown:
   Mon: [workout name] — [XXX] TSS ✅/⚠️/❌
@@ -67,7 +67,7 @@ Fitness:
 Wellness Trends:
   HRV: [XX]–[XX] ms (avg [XX], prev week [XX]) [↑/↓/→]
   RHR: [XX]–[XX] bpm (avg [XX], prev week [XX]) [↑/↓/→]
-  Sleep: [X.X]h avg, quality [X.X]/4 avg [↑/↓/→]
+  Sleep: [XhYm] avg, quality [X.X]/4 avg [↑/↓/→]
 
 Section 11 Flags: [list any triggered flags, or "None"]
 
@@ -119,3 +119,7 @@ focus areas. Reference load targets and phase progression.]
 - **Section 11 Flags** should surface immediately in weekly reports, not deferred to block reports
 - **Wellness arrows** use simple thresholds: >5% change from previous week = ↑ or ↓, otherwise →
 - Keep "Interpretation" concise — this is coaching interpretation, not data repetition
+
+## Formatting Rule
+
+- **Durations and sleep:** Always use `_formatted` fields from JSON (e.g., `sleep_formatted`, `duration_formatted`, `total_training_formatted`). Never convert decimal `_hours` fields to display format — the formatted values are pre-calculated from raw seconds and avoid rounding errors.
