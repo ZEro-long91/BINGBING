@@ -1,8 +1,8 @@
 {
-  "notification_id": "2026-02-28",
+  "notification_id": "2026-03-03",
   "changes": [
-    "sync.py - FIX - v3.6.1: Hard day HR zone fallback — falls back to icu_hr_zone_times when power zones unavailable. Conservative 2-rung HR ladder (Z4+ >= 10min, Z5+ >= 5min) per Seiler 3-zone model. Shared helpers, intensity_basis field in daily tier, null for unknown",
-    "SECTION_11.md - v11.10: Hard day field definition updated for HR fallback + null semantics. Per-sport thresholds sync.py implementation done (was pending). Thanks @pove",
-    "examples/reports/ - OVERHAUL: All report templates, examples, README, and report hierarchy updated"
+    "sync.py - FEATURE - v3.6.2→3.6.4: Planned workout summaries — interval sessions compressed into one-line shapes (e.g. '5×4m @106-120% / 3m Z1'). Two parsers (explicit repeats + flat alternating), strict guards, fail-safe to raw description. Tiered detail: full days 0-7, skeleton + summary days 8-42. workout_summary_stats telemetry. Human-readable time fields (XhYm) throughout. READ_THIS_FIRST display_formatting instruction",
+    "examples/agentic/ - NEW: push.py + push-workout.yml — write planned workouts to Intervals.icu calendar via GitHub Actions dispatch or local CLI. Template ID mappings for all 14 Workout Reference sessions",
+    "examples/reports/ - UPDATE: All report templates and examples updated with XhYm formatting + Formatting Rule section"
   ]
 }
