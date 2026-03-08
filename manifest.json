@@ -2,7 +2,7 @@
   "scope": "Operational files that affect coaching quality. These are the files --update compares and pulls. --init downloads the entire repo as a zip and does not use this manifest for file discovery.",
   "files": {
     "sync.py": {
-      "version": "3.75",
+      "version": "3.76",
       "path": "examples/sync.py",
       "description": "Data sync engine"
     },
