@@ -204,11 +204,11 @@ We can't list every combination — there are many. The pattern is always the sa
 
 ## Automate the Refresh
 
-Set up a timer to run sync.py automatically so your data is always fresh when you open your AI coach.
+Set up a timer to run sync.py every **60 seconds** so your data is always fresh when you open your AI coach.
 
-All four timer methods below (launchd, systemd, cron, Task Scheduler) **survive reboots and wake from sleep**. If you close your laptop at night and open it in the morning, sync picks up automatically — data refreshes within 1-5 minutes.
+All four timer methods below (launchd, systemd, cron, Task Scheduler) **survive reboots and wake from sleep**. If you close your laptop at night and open it in the morning, sync picks up automatically — data refreshes within a minute.
 
-Recommended interval: **every 1 minute**. API limits are generous (Intervals.icu allows 30 requests/second, sync.py makes ~5-8 calls per run). Data only actually changes a few times a day (after workouts, wellness logging), so **5 minutes** is equally fine if you prefer. The point is that data is always fresh when you open your AI coach, not that you need real-time updates.
+API limits are generous (Intervals.icu allows 30 requests/second, sync.py makes ~5-8 calls per run). Data only changes a few times a day (after workouts, wellness logging).
 
 Command for all platforms:
 
