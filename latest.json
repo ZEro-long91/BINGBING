@@ -15,7 +15,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-03-11T01:19:56.705412",
+    "last_updated": "2026-03-11T03:37:49.711238",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.77"
@@ -66,10 +66,10 @@
       "unavailable": 0
     },
     "phase_context": {
-      "phase": "Deload",
-      "phase_week": 1,
-      "amber_threshold": 2,
-      "modifier_applied": "default"
+      "phase": "Build",
+      "phase_week": 0,
+      "amber_threshold": 3,
+      "modifier_applied": "build_loosened"
     },
     "race_week_defers": false,
     "modification": {
@@ -119,13 +119,13 @@
       "atl": 44.46,
       "tsb": 4.65,
       "ramp_rate": -0.64,
-      "fitness_source": "From Intervals.icu API (reflects completed workouts)"
+      "fitness_source": "Decayed from yesterday (today's planned workouts not yet completed)"
     },
     "thresholds": {
-      "eftp": 161.7,
-      "w_prime": 14163,
+      "eftp": 161.8,
+      "w_prime": 14177,
       "w_prime_kj": 14.2,
-      "p_max": 629,
+      "p_max": 630,
       "vo2max": null,
       "sports": {
         "cycling": {
@@ -286,8 +286,8 @@
       "matched_days": 2,
       "planned_dates": [
         "2026-03-05",
-        "2026-03-09",
-        "2026-03-10"
+        "2026-03-10",
+        "2026-03-11"
       ],
       "completed_dates": [
         "2026-03-05",
@@ -296,10 +296,10 @@
       ]
     },
     "phase_detection": {
-      "phase": "Deload",
-      "confidence": "medium",
+      "phase": "Build",
+      "confidence": "low",
       "reason_codes": [
-        "PLAN_GAP_NEXT_WEEK"
+        "BUILD_RESUMING_AFTER_DELOAD_TENTATIVE"
       ],
       "basis": {
         "stream_1": {
@@ -309,24 +309,24 @@
           "weeks_available": 4
         },
         "stream_2": {
-          "planned_tss_delta": null,
-          "hard_sessions_planned": 0,
+          "planned_tss_delta": 0.44,
+          "hard_sessions_planned": 1,
           "race_proximity": null,
           "next_week_load": null,
-          "plan_coverage_current_week": 0.0,
+          "plan_coverage_current_week": 0.2,
           "plan_coverage_next_week": 0.0
         },
         "data_quality": "good",
         "stream_agreement": null
       },
       "previous_phase": "Deload",
-      "phase_duration_weeks": 1,
+      "phase_duration_weeks": 0,
       "dossier_declared": null,
       "dossier_agreement": null
     },
-    "phase_detected": "Deload",
+    "phase_detected": "Build",
     "phase_triggers": [
-      "PLAN_GAP_NEXT_WEEK"
+      "BUILD_RESUMING_AFTER_DELOAD_TENTATIVE"
     ],
     "seasonal_context": "Late Base / Build",
     "benchmark_indoor": {
@@ -343,13 +343,13 @@
       "benchmark_percentage": null,
       "seasonal_expected": null
     },
-    "eftp": 161.7,
-    "w_prime": 14163,
+    "eftp": 161.8,
+    "w_prime": 14177,
     "w_prime_kj": 14.2,
-    "p_max": 629,
+    "p_max": 630,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-03-11T01:19:56.704740",
+    "calculation_timestamp": "2026-03-11T03:37:49.710543",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -796,11 +796,23 @@
       "vo2max": null
     }
   ],
-  "planned_workouts": [],
+  "planned_workouts": [
+    {
+      "id": 97780160,
+      "date": "2026-03-11",
+      "name": "\u9608\u503c\u6781\u9650\u6311\u6218",
+      "type": "WORKOUT",
+      "planned_tss": 90,
+      "duration_hours": 1.08,
+      "duration_formatted": "1h5m",
+      "workout_summary": "3m @113W | 3m @129W | 3m @145W | 3m @162W | 3m | 2\u00d720m @160W / 5m rec",
+      "description": "# [ZEro] 3.11 \u9608\u503c\u6781\u9650\u6311\u6218 (2x20min)\n# \u76ee\u6807\uff1a\u901a\u8fc7 160W \u6301\u7eed\u8f93\u51fa\uff0c\u9a8c\u8bc1 162W FTP \u662f\u5426\u8bbe\u4f4e\u4e86\n# \u72b6\u6001\uff1aHRV 51.0ms (\u5dc5\u5cf0\u6062\u590d)\n# \u7279\u70b9\uff1a\u5305\u542b 100% FTP \u5524\u9192\u73af\u8282\n\nWarmup\n- 3m 70%\n- 3m 80% \n- 3m 90%\n- 3m 100%\n- Press lap 3m Z1\n\nMain Set\n2x\n- 20m 160w cadence 90-95rpm\n- 5m 85w 85rpm recovery"
+    }
+  ],
   "workout_summary_stats": {
-    "attempted": 0,
-    "success": 0,
-    "patternA": 0,
+    "attempted": 1,
+    "success": 1,
+    "patternA": 1,
     "patternB": 0,
     "bail_no_workout_doc": 0,
     "bail_no_match": 0
