@@ -15,7 +15,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-03-12T23:57:22.449013",
+    "last_updated": "2026-03-13T02:00:02.894363",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.77"
@@ -27,19 +27,19 @@
     "signals": {
       "hrv": {
         "status": "green",
-        "value": 45.0,
-        "baseline_7d": 41.4,
-        "delta_pct": 8.7
+        "value": 49.0,
+        "baseline_7d": 42.4,
+        "delta_pct": 15.6
       },
       "rhr": {
         "status": "green",
-        "value": 57,
-        "baseline_7d": 55.4,
-        "delta_bpm": 1.6
+        "value": 53,
+        "baseline_7d": 55,
+        "delta_bpm": -2
       },
       "sleep": {
         "status": "green",
-        "hours": 7.17,
+        "hours": 9.1,
         "quality": null
       },
       "acwr": {
@@ -52,11 +52,11 @@
       },
       "ri": {
         "status": "green",
-        "value": 1.06
+        "value": 1.2
       },
       "tsb": {
         "status": "green",
-        "value": -2.1
+        "value": 3.7
       }
     },
     "signal_summary": {
@@ -105,11 +105,11 @@
   },
   "current_status": {
     "fitness": {
-      "ctl": 50.83,
-      "atl": 52.97,
-      "tsb": -2.14,
-      "ramp_rate": 1.47,
-      "fitness_source": "From Intervals.icu API (reflects completed workouts)"
+      "ctl": 49.63,
+      "atl": 45.92,
+      "tsb": 3.71,
+      "ramp_rate": 1.44,
+      "fitness_source": "Decayed from yesterday (today's planned workouts not yet completed)"
     },
     "thresholds": {
       "eftp": 161.8,
@@ -146,21 +146,21 @@
     },
     "current_metrics": {
       "weight_kg": 59.6,
-      "resting_hr": 57,
-      "hrv": 45.0,
+      "resting_hr": 53,
+      "hrv": 49.0,
       "sleep_quality": null,
-      "sleep_hours": 7.17,
-      "sleep_formatted": "7h10m"
+      "sleep_hours": 9.1,
+      "sleep_formatted": "9h6m"
     }
   },
   "derived_metrics": {
-    "recovery_index": 1.06,
-    "hrv_baseline_7d": 41.4,
-    "rhr_baseline_7d": 55.4,
-    "hrv_baseline_28d": 42.7,
-    "rhr_baseline_28d": 55.5,
-    "latest_hrv": 45.0,
-    "latest_rhr": 57,
+    "recovery_index": 1.2,
+    "hrv_baseline_7d": 42.4,
+    "rhr_baseline_7d": 55,
+    "hrv_baseline_28d": 43.2,
+    "rhr_baseline_28d": 55.4,
+    "latest_hrv": 49.0,
+    "latest_rhr": 53,
     "acwr": 1.29,
     "acwr_interpretation": "optimal",
     "monotony": 0.64,
@@ -172,7 +172,7 @@
     "multi_sport_detected": false,
     "strain": 267.0,
     "stress_tolerance": 4.2,
-    "load_recovery_ratio": 3.9,
+    "load_recovery_ratio": 3.5,
     "tss_7d_total": 417.0,
     "tss_28d_total": 1291.0,
     "zone_distribution_7d": {
@@ -269,14 +269,15 @@
         "note": "Compares 7d vs 28d Seiler TID to detect distribution shifts. pi_delta positive = more polarized acutely."
       }
     },
-    "consistency_index": 1.0,
+    "consistency_index": 0.67,
     "consistency_details": {
-      "planned_days": 2,
+      "planned_days": 3,
       "completed_days": 3,
       "matched_days": 2,
       "planned_dates": [
         "2026-03-10",
-        "2026-03-11"
+        "2026-03-11",
+        "2026-03-13"
       ],
       "completed_dates": [
         "2026-03-07",
@@ -298,7 +299,7 @@
           "weeks_available": 4
         },
         "stream_2": {
-          "planned_tss_delta": 0.4,
+          "planned_tss_delta": 0.53,
           "hard_sessions_planned": 1,
           "race_proximity": null,
           "next_week_load": null,
@@ -338,16 +339,16 @@
     "p_max": 630,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-03-12T23:57:22.448281",
+    "calculation_timestamp": "2026-03-13T02:00:02.893637",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
       "activities_7d": 4,
       "activities_28d": 21,
-      "planned_workouts_7d": 2,
+      "planned_workouts_7d": 3,
       "ftp_history_days": {
         "indoor": 0,
-        "outdoor": 2
+        "outdoor": 3
       }
     }
   },
@@ -567,22 +568,6 @@
   ],
   "wellness_data": [
     {
-      "date": "2026-03-06",
-      "weight_kg": null,
-      "resting_hr": 56,
-      "hrv_rmssd": 42.0,
-      "hrv_sdnn": null,
-      "sleep_hours": 7.35,
-      "sleep_formatted": "7h21m",
-      "sleep_quality": null,
-      "sleep_score": null,
-      "mental_energy": null,
-      "fatigue": null,
-      "soreness": null,
-      "avg_sleeping_hr": 55.0,
-      "vo2max": null
-    },
-    {
       "date": "2026-03-07",
       "weight_kg": null,
       "resting_hr": 59,
@@ -677,6 +662,22 @@
       "soreness": null,
       "avg_sleeping_hr": 59.0,
       "vo2max": null
+    },
+    {
+      "date": "2026-03-13",
+      "weight_kg": null,
+      "resting_hr": 53,
+      "hrv_rmssd": 49.0,
+      "hrv_sdnn": null,
+      "sleep_hours": 9.1,
+      "sleep_formatted": "9h6m",
+      "sleep_quality": null,
+      "sleep_score": null,
+      "mental_energy": null,
+      "fatigue": null,
+      "soreness": null,
+      "avg_sleeping_hr": 53.0,
+      "vo2max": null
     }
   ],
   "planned_workouts": [
@@ -688,8 +689,8 @@
       "planned_tss": 65,
       "duration_hours": 0.83,
       "duration_formatted": "50m",
-      "workout_summary": "3m @120W | 3m @137W | 3m @154W | 3m @172W | 3m @86W | 5\u00d73m @190W / 3m rec | 5m @80W",
-      "description": "# [ZEro] 3.12 VO2 Max \u5524\u9192\u6311\u6218\n# \u76ee\u6807\uff1a\u901a\u8fc7 Z5 \u95f4\u6b47\u62c9\u5347\u6700\u5927\u6444\u6c27\u91cf\uff0c\u6253\u7834 172W \u74f6\u9888\n# \u8bbe\u5b9a\uff1a\u57fa\u4e8e\u65b0 FTP 172W\n\nWarmup\n- 3m 70% 90rpm\n- 3m 80% 90rpm\n- 3m 90% 95rpm\n- 3m 100% 95rpm\n- 3m 50% press-lap \n\nMain Set\n5x\n- 3m 190w 100-110rpm\n- 3m 100w 85rpm recovery\n\nCooldown\n- 5m 80w"
+      "workout_summary": "3m @120W | 3m @137W | 3m @154W | 3m @172W | 3m @86W | 5\u00d73m @190W / 3m rec | 5m @100W",
+      "description": "# [ZEro] 3.12 VO2 Max \u5524\u9192\u6311\u6218\n# \u76ee\u6807\uff1a\u901a\u8fc7 Z5 \u95f4\u6b47\u62c9\u5347\u6700\u5927\u6444\u6c27\u91cf\uff0c\u6253\u7834 172W \u74f6\u9888\n# \u8bbe\u5b9a\uff1a\u57fa\u4e8e\u65b0 FTP 172W\n\nWarmup\n- 3m 70% 90rpm\n- 3m 80% 90rpm\n- 3m 90% 95rpm\n- 3m 100% 95rpm\n- 3m 50% press-lap \n\nMain Set\n5x\n- 3m 190w 100-110rpm\n- 3m 100w 85rpm recovery\n\nCooldown\n- 5m 100w"
     }
   ],
   "workout_summary_stats": {
@@ -705,8 +706,8 @@
     "total_training_formatted": "5h12m",
     "total_tss": 417,
     "activities_count": 4,
-    "avg_hrv": 41.4,
-    "avg_resting_hr": 55.4
+    "avg_hrv": 42.4,
+    "avg_resting_hr": 55.0
   },
   "race_calendar": {
     "next_race": null,
