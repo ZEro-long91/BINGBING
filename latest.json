@@ -15,7 +15,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-03-17T01:25:19.111438",
+    "last_updated": "2026-03-17T03:55:30.763303",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.77"
@@ -76,14 +76,14 @@
       "unavailable": 0
     },
     "phase_context": {
-      "phase": "Deload",
-      "phase_week": 1,
-      "amber_threshold": 2,
-      "modifier_applied": "default"
+      "phase": "Build",
+      "phase_week": 0,
+      "amber_threshold": 3,
+      "modifier_applied": "build_loosened"
     },
     "race_week_defers": false,
     "modification": null,
-    "reason": "P3 green light. 6 green, 1 amber (threshold 2), 0 red.",
+    "reason": "P3 green light. 6 green, 1 amber (threshold 3), 0 red.",
     "alarm_refs": []
   },
   "history": {
@@ -118,12 +118,12 @@
       "ctl": 48.46,
       "atl": 39.31,
       "tsb": 9.15,
-      "ramp_rate": -1.84,
-      "fitness_source": "From Intervals.icu API (reflects completed workouts)"
+      "ramp_rate": -0.64,
+      "fitness_source": "Decayed from yesterday (today's planned workouts not yet completed)"
     },
     "thresholds": {
-      "eftp": 161.2,
-      "w_prime": 14120,
+      "eftp": 161.4,
+      "w_prime": 14134,
       "w_prime_kj": 14.1,
       "p_max": 628,
       "vo2max": null,
@@ -279,14 +279,15 @@
         "note": "Compares 7d vs 28d Seiler TID to detect distribution shifts. pi_delta positive = more polarized acutely."
       }
     },
-    "consistency_index": 1.0,
+    "consistency_index": 0.67,
     "consistency_details": {
-      "planned_days": 2,
+      "planned_days": 3,
       "completed_days": 4,
       "matched_days": 2,
       "planned_dates": [
         "2026-03-11",
-        "2026-03-13"
+        "2026-03-13",
+        "2026-03-17"
       ],
       "completed_dates": [
         "2026-03-11",
@@ -296,10 +297,10 @@
       ]
     },
     "phase_detection": {
-      "phase": "Deload",
-      "confidence": "medium",
+      "phase": "Build",
+      "confidence": "low",
       "reason_codes": [
-        "PLAN_GAP_NEXT_WEEK"
+        "BUILD_RESUMING_AFTER_DELOAD_TENTATIVE"
       ],
       "basis": {
         "stream_1": {
@@ -309,24 +310,24 @@
           "weeks_available": 4
         },
         "stream_2": {
-          "planned_tss_delta": null,
-          "hard_sessions_planned": 0,
+          "planned_tss_delta": 0.47,
+          "hard_sessions_planned": 1,
           "race_proximity": null,
           "next_week_load": null,
-          "plan_coverage_current_week": 0.0,
+          "plan_coverage_current_week": 0.2,
           "plan_coverage_next_week": 0.0
         },
         "data_quality": "good",
         "stream_agreement": null
       },
       "previous_phase": "Deload",
-      "phase_duration_weeks": 1,
+      "phase_duration_weeks": 0,
       "dossier_declared": null,
       "dossier_agreement": null
     },
-    "phase_detected": "Deload",
+    "phase_detected": "Build",
     "phase_triggers": [
-      "PLAN_GAP_NEXT_WEEK"
+      "BUILD_RESUMING_AFTER_DELOAD_TENTATIVE"
     ],
     "seasonal_context": "Late Base / Build",
     "benchmark_indoor": {
@@ -343,19 +344,19 @@
       "benchmark_percentage": null,
       "seasonal_expected": null
     },
-    "eftp": 161.2,
-    "w_prime": 14120,
+    "eftp": 161.4,
+    "w_prime": 14134,
     "w_prime_kj": 14.1,
     "p_max": 628,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-03-17T01:25:19.110706",
+    "calculation_timestamp": "2026-03-17T03:55:30.762552",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
       "activities_7d": 5,
       "activities_28d": 23,
-      "planned_workouts_7d": 2,
+      "planned_workouts_7d": 3,
       "ftp_history_days": {
         "indoor": 0,
         "outdoor": 7
@@ -743,11 +744,23 @@
       "vo2max": null
     }
   ],
-  "planned_workouts": [],
+  "planned_workouts": [
+    {
+      "id": 99019345,
+      "date": "2026-03-17",
+      "name": "3x20 SST",
+      "type": "WORKOUT",
+      "planned_tss": 114,
+      "duration_hours": 1.5,
+      "duration_formatted": "1h30m",
+      "workout_summary": "3m @120W | 3m @137W | 3m @154W | 3m @172W | 3m | 3\u00d720m @160W / 5m rec",
+      "description": "Warmup\n- 3m 70%\n- 3m 80% \n- 3m 90%\n- 3m 100%\n- 3m Z1\n\nMain Set\n3x\n- 20m 160w cadence 90-95rpm\n- 5m 85w 85rpm recovery"
+    }
+  ],
   "workout_summary_stats": {
-    "attempted": 0,
-    "success": 0,
-    "patternA": 0,
+    "attempted": 1,
+    "success": 1,
+    "patternA": 1,
     "patternB": 0,
     "bail_no_workout_doc": 0,
     "bail_no_match": 0
