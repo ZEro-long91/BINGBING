@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-03-18T08:03:38.542717",
+    "last_updated": "2026-03-18T09:06:52.138077",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.86"
@@ -96,8 +96,8 @@
     }
   ],
   "readiness_decision": {
-    "recommendation": "modify",
-    "priority": 2,
+    "recommendation": "go",
+    "priority": 3,
     "signals": {
       "hrv": {
         "status": "green",
@@ -136,24 +136,14 @@
       "unavailable": 0
     },
     "phase_context": {
-      "phase": "Deload",
-      "phase_week": 2,
-      "amber_threshold": 2,
-      "modifier_applied": "default"
+      "phase": "Build",
+      "phase_week": 1,
+      "amber_threshold": 3,
+      "modifier_applied": "build_loosened"
     },
     "race_week_defers": false,
-    "modification": {
-      "triggers": [
-        "sleep",
-        "acwr"
-      ],
-      "suggested_adjustments": {
-        "intensity": "reduce",
-        "volume": "reduce",
-        "cap_zone": "Z2"
-      }
-    },
-    "reason": "P2 signal count. 2 amber (sleep, acwr) >= threshold 2.",
+    "modification": null,
+    "reason": "P3 green light. 4 green, 2 amber (threshold 3), 0 red.",
     "alarm_refs": []
   },
   "history": {
@@ -188,8 +178,8 @@
       "ctl": 49.93,
       "atl": 47.23,
       "tsb": 2.7,
-      "ramp_rate": -2.12,
-      "fitness_source": "From Intervals.icu API (reflects completed workouts)"
+      "ramp_rate": 0.83,
+      "fitness_source": "Decayed from yesterday (today's planned workouts not yet completed)"
     },
     "thresholds": {
       "eftp": 161.2,
@@ -380,14 +370,15 @@
         "note": "Compares 7d vs 28d Seiler TID to detect distribution shifts. pi_delta positive = more polarized acutely."
       }
     },
-    "consistency_index": 1.0,
+    "consistency_index": 0.67,
     "consistency_details": {
-      "planned_days": 2,
+      "planned_days": 3,
       "completed_days": 4,
       "matched_days": 2,
       "planned_dates": [
         "2026-03-13",
-        "2026-03-17"
+        "2026-03-17",
+        "2026-03-18"
       ],
       "completed_dates": [
         "2026-03-13",
@@ -397,10 +388,10 @@
       ]
     },
     "phase_detection": {
-      "phase": "Deload",
-      "confidence": "medium",
+      "phase": "Build",
+      "confidence": "low",
       "reason_codes": [
-        "PLAN_GAP_NEXT_WEEK"
+        "BUILD_RESUMING_AFTER_DELOAD_TENTATIVE"
       ],
       "basis": {
         "stream_1": {
@@ -410,24 +401,24 @@
           "weeks_available": 4
         },
         "stream_2": {
-          "planned_tss_delta": null,
-          "hard_sessions_planned": 0,
+          "planned_tss_delta": 1.09,
+          "hard_sessions_planned": 1,
           "race_proximity": null,
-          "next_week_load": null,
-          "plan_coverage_current_week": 0.0,
-          "plan_coverage_next_week": 0.0
+          "next_week_load": 1.44,
+          "plan_coverage_current_week": 0.6,
+          "plan_coverage_next_week": 1.0
         },
         "data_quality": "good",
         "stream_agreement": null
       },
       "previous_phase": "Deload",
-      "phase_duration_weeks": 2,
+      "phase_duration_weeks": 1,
       "dossier_declared": null,
       "dossier_agreement": null
     },
-    "phase_detected": "Deload",
+    "phase_detected": "Build",
     "phase_triggers": [
-      "PLAN_GAP_NEXT_WEEK"
+      "BUILD_RESUMING_AFTER_DELOAD_TENTATIVE"
     ],
     "seasonal_context": "Late Base / Build",
     "benchmark_indoor": {
@@ -450,13 +441,13 @@
     "p_max": 628,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-03-18T08:03:38.541805",
+    "calculation_timestamp": "2026-03-18T09:06:52.137147",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
       "activities_7d": 5,
       "activities_28d": 24,
-      "planned_workouts_7d": 2,
+      "planned_workouts_7d": 3,
       "ftp_history_days": {
         "indoor": 0,
         "outdoor": 0
@@ -1010,14 +1001,156 @@
       "readiness": null
     }
   ],
-  "planned_workouts": [],
+  "planned_workouts": [
+    {
+      "id": 99254854,
+      "date": "2026-03-18",
+      "name": "Z2 \u57fa\u7840\u8010\u529b (65\u5206\u949f)",
+      "type": "WORKOUT",
+      "sport_type": "Ride",
+      "planned_tss": 57,
+      "duration_hours": 1.08,
+      "duration_formatted": "1h5m",
+      "workout_summary": null,
+      "description": "Main Set\n- 65m 125w 90-95rpm"
+    },
+    {
+      "id": 99255101,
+      "date": "2026-03-19",
+      "name": "\u751c\u533a\u7a33\u5b9a 3x20 SST (162W)",
+      "type": "WORKOUT",
+      "sport_type": "Ride",
+      "planned_tss": 117,
+      "duration_hours": 1.5,
+      "duration_formatted": "1h30m",
+      "workout_summary": "3m @120W | 3m @137W | 3m @154W | 3m @172W | 3m | 3\u00d720m @162W / 5m rec",
+      "description": "Warmup\n- 3m 70%\n- 3m 80% \n- 3m 90%\n- 3m 100%\n- 3m Z1 press lap\n\nMain Set\n3x\n- 20m 162w 90-95rpm\n- 5m 85w 85rpm recovery"
+    },
+    {
+      "id": 99256204,
+      "date": "2026-03-20",
+      "name": "Z2 \u57fa\u7840\u8010\u529b (65\u5206\u949f)",
+      "type": "WORKOUT",
+      "sport_type": "Ride",
+      "planned_tss": 57,
+      "duration_hours": 1.08,
+      "duration_formatted": "1h5m",
+      "workout_summary": null,
+      "description": "Main Set\n- 65m 125w 90-95rpm"
+    },
+    {
+      "id": 99255450,
+      "date": "2026-03-23",
+      "name": "\u8fdb\u9636 SST\uff1a4x15 \u8282\u594f\u8f6c\u6362",
+      "type": "WORKOUT",
+      "sport_type": "Ride",
+      "planned_tss": 120,
+      "duration_hours": 1.58,
+      "duration_formatted": "1h35m",
+      "workout_summary": "3m @120W | 3m @137W | 3m @154W | 3m @172W | 3m | 4\u00d715m @162W / 5m rec",
+      "description": "Warmup\n- 3m 70%\n- 3m 80% \n- 3m 90%\n- 3m 100%\n- 3m Z1 press lap\n\nMain Set\n4x\n- 15m 162w 90-95rpm\n- 5m 85w recovery"
+    },
+    {
+      "id": 99255515,
+      "date": "2026-03-24",
+      "name": "\u6709\u6c27\u5524\u9192 + \u7206\u53d1\u529b\u70b9\u5c04 (60\u5206\u949f)",
+      "type": "WORKOUT",
+      "sport_type": "Ride",
+      "planned_tss": 55,
+      "duration_hours": 1.04,
+      "duration_formatted": "1h2m30s",
+      "workout_summary": null,
+      "description": "Warmup\n- 15m 65%\n\nMain Set\n5x\n- 30s 206w (120% FTP)\n- 3m 120w recovery\n- 5m 125w\n\nCool Down\n- 5m 55%"
+    },
+    {
+      "id": 99256382,
+      "date": "2026-03-25",
+      "name": "VO2 Max \u89e6\u78b0 (6x3min)",
+      "type": "WORKOUT",
+      "sport_type": "Ride",
+      "planned_tss": 77,
+      "duration_hours": 1.1,
+      "duration_formatted": "1h6m",
+      "workout_summary": "15m @112W | 2m @172W | 3m | 6\u00d73m @190W / 3m rec | 10m @86W",
+      "description": "Warmup\n- 15m ramp 50-80%\n- 2m 100%\n- 3m Z1\n\nMain Set\n6x\n- 3m 190w (110% FTP)\n- 3m 85w recovery\n\nCool Down\n- 10m 50%"
+    },
+    {
+      "id": 99256232,
+      "date": "2026-03-26",
+      "name": "Z2 \u57fa\u7840\u8010\u529b (65\u5206\u949f)",
+      "type": "WORKOUT",
+      "sport_type": "Ride",
+      "planned_tss": 57,
+      "duration_hours": 1.08,
+      "duration_formatted": "1h5m",
+      "workout_summary": null,
+      "description_preview": "Main Set\n- 65m 125w 90-95rpm"
+    },
+    {
+      "id": 99256451,
+      "date": "2026-03-27",
+      "name": "\u751c\u533a\u7a33\u5b9a 3x20 SST (162W)",
+      "type": "WORKOUT",
+      "sport_type": "Ride",
+      "planned_tss": 117,
+      "duration_hours": 1.5,
+      "duration_formatted": "1h30m",
+      "workout_summary": "3m @120W | 3m @137W | 3m @154W | 3m @172W | 3m | 3\u00d720m @162W / 5m rec"
+    },
+    {
+      "id": 99256247,
+      "date": "2026-03-30",
+      "name": "Z2 \u57fa\u7840\u8010\u529b (65\u5206\u949f)",
+      "type": "WORKOUT",
+      "sport_type": "Ride",
+      "planned_tss": 57,
+      "duration_hours": 1.08,
+      "duration_formatted": "1h5m",
+      "workout_summary": null,
+      "description_preview": "Main Set\n- 65m 125w 90-95rpm"
+    },
+    {
+      "id": 99255934,
+      "date": "2026-03-31",
+      "name": "\u9608\u503c\u9636\u68af\uff1a3x20 @ 96% FTP",
+      "type": "WORKOUT",
+      "sport_type": "Ride",
+      "planned_tss": 120,
+      "duration_hours": 1.5,
+      "duration_formatted": "1h30m",
+      "workout_summary": "3m @120W | 3m @137W | 3m @154W | 3m @172W | 3m | 3\u00d720m @165W / 5m rec"
+    },
+    {
+      "id": 99256254,
+      "date": "2026-04-01",
+      "name": "Z2 \u57fa\u7840\u8010\u529b (65\u5206\u949f)",
+      "type": "WORKOUT",
+      "sport_type": "Ride",
+      "planned_tss": 57,
+      "duration_hours": 1.08,
+      "duration_formatted": "1h5m",
+      "workout_summary": null,
+      "description_preview": "Main Set\n- 65m 125w 90-95rpm"
+    },
+    {
+      "id": 99255982,
+      "date": "2026-04-02",
+      "name": "VO2 Max \u89e6\u78b0 (6x3min)",
+      "type": "WORKOUT",
+      "sport_type": "Ride",
+      "planned_tss": 77,
+      "duration_hours": 1.1,
+      "duration_formatted": "1h6m",
+      "workout_summary": "15m @112W | 2m @172W | 3m | 6\u00d73m @190W / 3m rec | 10m @86W"
+    }
+  ],
   "workout_summary_stats": {
-    "attempted": 0,
-    "success": 0,
-    "patternA": 0,
+    "attempted": 12,
+    "success": 6,
+    "patternA": 6,
     "patternB": 0,
     "bail_no_workout_doc": 0,
-    "bail_no_match": 0
+    "bail_no_match": 6
   },
   "weekly_summary": {
     "total_training_hours": 3.65,
