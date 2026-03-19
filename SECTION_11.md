@@ -1482,7 +1482,7 @@ See https://github.com/CrankAddict/section-11/tree/main/examples/reports for ann
 - Today's planned workout with duration and targets (or rest day + next session preview)
 - Go/Modify/Skip recommendation with rationale
 
-See `PRE_WORKOUT_TEMPLATE.md` in the examples directory for conditional fields and readiness decision logic.
+See `PRE_WORKOUT_REPORT_TEMPLATE.md` in the examples directory for conditional fields and readiness decision logic.
 
 **Post-Workout Reports must include:**
 - One-line session summary
@@ -1492,7 +1492,7 @@ See `PRE_WORKOUT_TEMPLATE.md` in the examples directory for conditional fields a
 - Overall coach note (2-4 sentences: compliance, key quality observations, load context, recovery note)
 - Tomorrow preview (when planned session exists)
 
-See `POST_WORKOUT_TEMPLATE.md` in the examples directory for field reference and rounding conventions.
+See `POST_WORKOUT_REPORT_TEMPLATE.md` in the examples directory for field reference and rounding conventions.
 
 **Brevity Rule:** Brief when metrics are normal. Detailed when thresholds are breached or athlete asks "why."
 
