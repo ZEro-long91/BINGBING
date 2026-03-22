@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-03-22T08:58:11.258067",
+    "last_updated": "2026-03-22T09:34:23.709514",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.86"
@@ -411,7 +411,7 @@
           "race_proximity": null,
           "next_week_load": 1.44,
           "plan_coverage_current_week": 0.0,
-          "plan_coverage_next_week": 1.0
+          "plan_coverage_next_week": 1.2
         },
         "data_quality": "good",
         "stream_agreement": null
@@ -446,7 +446,7 @@
     "p_max": 628,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-03-22T08:58:11.256987",
+    "calculation_timestamp": "2026-03-22T09:34:23.708465",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -1068,6 +1068,18 @@
       "description": "Warmup\n- 3m 70%\n- 3m 80% \n- 3m 90%\n- 3m 100%\n- 3m Z1 press lap\n\nMain Set\n3x\n- 20m 162w 90-95rpm\n- 5m 85w 85rpm recovery"
     },
     {
+      "id": 99917030,
+      "date": "2026-03-29",
+      "name": "\u8def\u9a91",
+      "type": "WORKOUT",
+      "sport_type": "Ride",
+      "planned_tss": null,
+      "duration_hours": 5.0,
+      "duration_formatted": "5h",
+      "workout_summary": null,
+      "description": "- 5h freeride"
+    },
+    {
       "id": 99256247,
       "date": "2026-03-30",
       "name": "Z2 \u57fa\u7840\u8010\u529b (65\u5206\u949f)",
@@ -1115,12 +1127,12 @@
     }
   ],
   "workout_summary_stats": {
-    "attempted": 9,
+    "attempted": 10,
     "success": 5,
     "patternA": 5,
     "patternB": 0,
     "bail_no_workout_doc": 0,
-    "bail_no_match": 4
+    "bail_no_match": 5
   },
   "weekly_summary": {
     "total_training_hours": 8.32,
