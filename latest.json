@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-03-23T01:11:16.834361",
+    "last_updated": "2026-03-23T01:28:41.958211",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.86"
@@ -407,7 +407,7 @@
           "weeks_available": 4
         },
         "stream_2": {
-          "planned_tss_delta": 1.44,
+          "planned_tss_delta": 1.46,
           "hard_sessions_planned": 3,
           "race_proximity": null,
           "next_week_load": 1.05,
@@ -447,7 +447,7 @@
     "p_max": 628,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-03-23T01:11:16.833313",
+    "calculation_timestamp": "2026-03-23T01:28:41.957170",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -1009,16 +1009,16 @@
   ],
   "planned_workouts": [
     {
-      "id": 99406966,
+      "id": 100096475,
       "date": "2026-03-23",
-      "name": "\u8fdb\u9636 SST\uff1a4x15 \u8282\u594f\u8f6c\u6362",
+      "name": "6x20 min alternating cadence",
       "type": "WORKOUT",
       "sport_type": "Ride",
-      "planned_tss": 120,
-      "duration_hours": 1.58,
-      "duration_formatted": "1h35m",
-      "workout_summary": "3m @120W | 3m @137W | 3m @154W | 3m @172W | 3m | 4\u00d715m @162W / 5m rec",
-      "description": "Warmup\n- 3m 70%\n- 3m 80% \n- 3m 90%\n- 3m 100%\n- 3m Z1 press lap\n\nMain Set\n4x\n- 15m 162w 90-95rpm\n- 5m 85w recovery"
+      "planned_tss": 123,
+      "duration_hours": 2.33,
+      "duration_formatted": "2h20m",
+      "workout_summary": "10m | 3\u00d720m @129W / 20m rec | 10m",
+      "description": "\u4e39\u5154\u5b50\u8bad\u7ec3\u8425\u4e4b: \u4f4e\u8e0f\u9891\u8bad\u7ec3\uff08\u514d\u8d39\uff09 http://xhslink.com/o/5p0pSOyKtmi \n\nWarm-up:\n- 10m Z1\n\nWork Intervals: 3x\n- 20m 75% 90-105rpm\n- 20m 75% 50-65rpm\n\nCooldown:\n- 10m Z1"
     },
     {
       "id": 99255515,
@@ -1033,16 +1033,16 @@
       "description": "Warmup\n- 15m 65%\n\nMain Set\n5x\n- 30s 206w (120% FTP)\n- 3m 120w recovery\n- 5m 125w\n\nCool Down\n- 5m 55%"
     },
     {
-      "id": 99256382,
+      "id": 99406966,
       "date": "2026-03-25",
-      "name": "VO2 Max \u89e6\u78b0 (6x3min)",
+      "name": "\u8fdb\u9636 SST\uff1a4x15 \u8282\u594f\u8f6c\u6362",
       "type": "WORKOUT",
       "sport_type": "Ride",
-      "planned_tss": 77,
-      "duration_hours": 1.1,
-      "duration_formatted": "1h6m",
-      "workout_summary": "15m @112W | 2m @172W | 3m | 6\u00d73m @190W / 3m rec | 10m @86W",
-      "description": "Warmup\n- 15m ramp 50-80%\n- 2m 100%\n- 3m Z1\n\nMain Set\n6x\n- 3m 190w (110% FTP)\n- 3m 85w recovery\n\nCool Down\n- 10m 50%"
+      "planned_tss": 120,
+      "duration_hours": 1.58,
+      "duration_formatted": "1h35m",
+      "workout_summary": "3m @120W | 3m @137W | 3m @154W | 3m @172W | 3m | 4\u00d715m @162W / 5m rec",
+      "description": "Warmup\n- 3m 70%\n- 3m 80% \n- 3m 90%\n- 3m 100%\n- 3m Z1 press lap\n\nMain Set\n4x\n- 15m 162w 90-95rpm\n- 5m 85w recovery"
     },
     {
       "id": 99256232,
@@ -1057,16 +1057,16 @@
       "description": "Main Set\n- 65m 125w 90-95rpm"
     },
     {
-      "id": 99256451,
+      "id": 99256382,
       "date": "2026-03-27",
-      "name": "\u751c\u533a\u7a33\u5b9a 3x20 SST (162W)",
+      "name": "VO2 Max \u89e6\u78b0 (6x3min)",
       "type": "WORKOUT",
       "sport_type": "Ride",
-      "planned_tss": 117,
-      "duration_hours": 1.5,
-      "duration_formatted": "1h30m",
-      "workout_summary": "3m @120W | 3m @137W | 3m @154W | 3m @172W | 3m | 3\u00d720m @162W / 5m rec",
-      "description": "Warmup\n- 3m 70%\n- 3m 80% \n- 3m 90%\n- 3m 100%\n- 3m Z1 press lap\n\nMain Set\n3x\n- 20m 162w 90-95rpm\n- 5m 85w 85rpm recovery"
+      "planned_tss": 77,
+      "duration_hours": 1.1,
+      "duration_formatted": "1h6m",
+      "workout_summary": "15m @112W | 2m @172W | 3m | 6\u00d73m @190W / 3m rec | 10m @86W",
+      "description": "Warmup\n- 15m ramp 50-80%\n- 2m 100%\n- 3m Z1\n\nMain Set\n6x\n- 3m 190w (110% FTP)\n- 3m 85w recovery\n\nCool Down\n- 10m 50%"
     },
     {
       "id": 99917030,
