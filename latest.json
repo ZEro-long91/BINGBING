@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-03-23T01:28:41.958211",
+    "last_updated": "2026-03-23T04:08:53.004579",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.86"
@@ -154,7 +154,7 @@
   "history": {
     "available": true,
     "last_generated": "2026-03-18",
-    "age_days": 4,
+    "age_days": 5,
     "total_months": 17,
     "history_confidence": "high"
   },
@@ -407,8 +407,8 @@
           "weeks_available": 4
         },
         "stream_2": {
-          "planned_tss_delta": 1.46,
-          "hard_sessions_planned": 3,
+          "planned_tss_delta": 1.22,
+          "hard_sessions_planned": 2,
           "race_proximity": null,
           "next_week_load": 1.05,
           "plan_coverage_current_week": 1.2,
@@ -447,7 +447,7 @@
     "p_max": 628,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-03-23T01:28:41.957170",
+    "calculation_timestamp": "2026-03-23T04:08:53.003540",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -1011,14 +1011,14 @@
     {
       "id": 100096475,
       "date": "2026-03-23",
-      "name": "6x20 min alternating cadence",
+      "name": "alternating cadence",
       "type": "WORKOUT",
       "sport_type": "Ride",
-      "planned_tss": 123,
-      "duration_hours": 2.33,
-      "duration_formatted": "2h20m",
-      "workout_summary": "10m | 3\u00d720m @129W / 20m rec | 10m",
-      "description": "\u4e39\u5154\u5b50\u8bad\u7ec3\u8425\u4e4b: \u4f4e\u8e0f\u9891\u8bad\u7ec3\uff08\u514d\u8d39\uff09 http://xhslink.com/o/5p0pSOyKtmi \n\nWarm-up:\n- 10m Z1\n\nWork Intervals: 3x\n- 20m 75% 90-105rpm\n- 20m 75% 50-65rpm\n\nCooldown:\n- 10m Z1"
+      "planned_tss": 53,
+      "duration_hours": 1.0,
+      "duration_formatted": "1h",
+      "workout_summary": null,
+      "description": "- 60m 125w 90-105rpm"
     },
     {
       "id": 99255515,
@@ -1075,8 +1075,8 @@
       "type": "WORKOUT",
       "sport_type": "Ride",
       "planned_tss": null,
-      "duration_hours": 5.0,
-      "duration_formatted": "5h",
+      "duration_hours": 4.0,
+      "duration_formatted": "4h",
       "workout_summary": null,
       "description": "- 5h freeride"
     },
@@ -1129,11 +1129,11 @@
   ],
   "workout_summary_stats": {
     "attempted": 10,
-    "success": 5,
-    "patternA": 5,
+    "success": 4,
+    "patternA": 4,
     "patternB": 0,
     "bail_no_workout_doc": 0,
-    "bail_no_match": 5
+    "bail_no_match": 6
   },
   "weekly_summary": {
     "total_training_hours": 8.32,
