@@ -1,10 +1,33 @@
 # Section 11 — AI Coach Protocol
 
-**Protocol Version:** 11.20  
-**Last Updated:** 2026-03-22
+**Protocol Version:** 11.22  
+**Last Updated:** 2026-03-23
 **License:** [MIT](https://opensource.org/licenses/MIT)
 
 ### Changelog
+
+**v11.22 — Sustainability Profile (Race Estimation):**
+- New capability metric: `sustainability_profile` — per-sport power/HR sustainability table for race performance estimation
+- 42-day window, sport-filtered curves (power + HR per sport family via Intervals.icu API)
+- Cycling: three model layers per anchor — actual MMP, Coggan duration factors (Allen & Coggan, 3rd ed., midpoints), CP/W' model (P=CP+W'/t). `model_divergence_pct` = actual vs CP model — divergence IS the coaching signal
+- Non-cycling power sports (SkiErg, rowing): actual MMP only, no modeled layer
+- Indoor/outdoor source flag for cycling: max(Ride, VirtualRide) at each anchor, source indicates environment
+- Sport-specific anchor sets: cycling 300s–7200s, SkiErg/rowing 60s–1800s
+- Per-anchor: actual_watts, actual_wpkg, actual_hr, pct_lthr (sport-specific LTHR from v11.8 thresholds), source
+- Block-level: coverage_ratio, ftp_staleness_days (cycling only), weight fallback chain
+- CP/W' primary ≤20min, Coggan reference ≥60min, 30min crossover
+- Field definitions, interpretation guidance, Coggan duration table with published ranges
+- sync.py v3.91
+
+**v11.21 — Sleep Signal Simplification:**
+- Sleep quality and sleep score removed from readiness signal classification — hours only
+- Rationale: sleep quality/score are device-derived composites of HRV + HR during sleep, already captured as independent signals. Including them double-counts the same underlying physiology
+- Sleep signal now: Green ≥ 7h, Amber 5–7h, Red < 5h (no quality component)
+- Sleep quality/score remain in wellness data as coaching context — not wired into readiness_decision
+- HRV-unavailable fallback removed (sleep quality no longer substitutes as primary subjective readiness indicator)
+- `Sleep Quality = 4 → Reduce intensity` decision rule removed (downstream impact shows in HRV/RHR)
+- Tier 1 hierarchy updated: Sleep (hours) replaces Sleep (quality + hours)
+- sync.py v3.90
 
 **v11.20 — HR Curve Delta (Capability Metric):**
 - New capability metric: `hr_curve_delta` compares max sustained HR at 4 anchor durations (60s/300s/1200s/3600s) across two 28-day windows
@@ -126,7 +149,7 @@ Section 11 operates as a **self-contained AI protocol**. All metric definitions,
 | Zone Distribution Metrics | Section 11 (11A, subsection 9) | AI intensity monitoring |
 | Seiler TID Classification | Section 11 (11A, Zone Distribution) | AI TID classification and drift detection |
 | Aggregate Durability | Section 11 (11A, subsection 9) | AI durability trend tracking |
-| Capability Metrics | Section 11 (11A, subsection 9) | AI capability-layer analysis (durability, TID comparison, power curve delta, HR curve delta) |
+| Capability Metrics | Section 11 (11A, subsection 9) | AI capability-layer analysis (durability, TID comparison, power curve delta, HR curve delta, sustainability profile) |
 | Validation Metadata | Section 11 (11C) | AI audit schema |
 
 AI systems should reference the athlete dossier for athlete-specific values (FTP, zones, goals, schedule) and this protocol for all coaching logic, thresholds, and decision rules.
@@ -858,7 +881,7 @@ AI systems must only consider caloric-reduction or weight-optimization phases du
 |--------|-------|-------|-----|
 | HRV | Within ±10% of 7d baseline | ↓ 10–20% | ↓ >20% |
 | RHR | At or below baseline | ↑ 3–4 bpm | ↑ ≥5 bpm |
-| Sleep | ≥ 7h AND quality ≤ 2 | 5–7h OR quality 3 | < 5h OR quality 4 |
+| Sleep | ≥ 7h | 5–7h | < 5h |
 | TSB | > phase threshold (default -15) | Between threshold and -30 | < -30 |
 | ACWR | 0.8–1.3 | <0.8 or 1.3–1.5 | > 1.5 |
 | RI | ≥ 0.8 | 0.6–0.79 | < 0.6 |
@@ -1061,7 +1084,8 @@ It governs acute, session-level performance safety, ensuring localized overreach
 **Key Variables:**
 - HRV (ms): 7-day rolling baseline comparison
 - RHR (bpm): 7-day rolling baseline comparison
-- Sleep Quality (1–4): Subjective quality rating (inverted scale: 1=Great, 4=Poor) — manual entry or auto-derived from device sleep score
+- Sleep Hours: Objective duration. Classified as readiness signal (Green ≥ 7h, Amber 5–7h, Red < 5h)
+- Sleep Quality / Sleep Score: Excluded from readiness classification (v11.21). These are device-derived composites of HRV + HR during sleep — signals already captured independently. Downstream impact of poor sleep surfaces in HRV and RHR. Quality/score remain in wellness data as coaching context.
 - Feel (1–5): Manual subjective entry (1=Strong, 2=Good, 3=Normal, 4=Poor, 5=Weak)
 
 **Extended Wellness Fields (v3.85+):** sync.py passes through all Intervals.icu wellness fields — subjective state (stress, mood, motivation, injury, fatigue, soreness, hydration), vitals (spO2, blood glucose, blood pressure, Baevsky SI, lactate, respiration), body composition (body fat, abdomen), nutrition (kcal, carbs, protein, fat), lifestyle (steps, hydration volume), and cycle tracking (menstrual phase). All categorical fields use a 1→4 positional scale where **1 = best state, 4 = worst state**. Per-field labels are in `wellness_field_scales` in READ_THIS_FIRST. Fields are null when not reported. These are coaching context — none are wired into the automated readiness_decision pipeline.
@@ -1079,7 +1103,6 @@ Feel/RPE is not wired into the automated readiness_decision pipeline. It enriche
 **Decision Logic:**
 - HRV ↓ > 20% vs baseline → Active recovery / easy spin
 - RHR ↑ ≥ 5 bpm vs baseline → Fatigue / illness flag
-- Sleep Quality = 4 → Reduce next-session intensity by 1 zone
 
 The following thresholds apply to wellness-level Feel. If Feel is present in the data, use it. If absent and other signals are ambiguous, solicit it. If absent and the picture is clear, do not ask.
 
@@ -1090,8 +1113,6 @@ The following thresholds apply to wellness-level Feel. If Feel is present in the
 
 **Integration:**
 Daily metrics synchronised through data hierarchy and mirrored in JSON dataset each morning. AI-coach systems must reference latest values before prescribing or validating any session.
-
-If HRV unavailable, Sleep quality substitutes as primary subjective readiness indicator.
 
 ---
 
@@ -1328,7 +1349,7 @@ These metrics are **secondary** to the primary readiness markers defined in Sect
 
 1. **Primary readiness:** RI, HRV, RHR, Sleep
 2. **Secondary load metrics:** Stress Tolerance, Load-Recovery Ratio, Consistency Index
-3. **Tertiary diagnostics:** Zone Distribution Metrics, Durability Sub-Metrics, Capability Metrics (Aggregate Durability, TID Drift, Power Curve Delta, HR Curve Delta)
+3. **Tertiary diagnostics:** Zone Distribution Metrics, Durability Sub-Metrics, Capability Metrics (Aggregate Durability, TID Drift, Power Curve Delta, HR Curve Delta, Sustainability Profile)
 
 Do not override primary readiness signals with secondary load metrics.
 
@@ -1645,6 +1666,81 @@ The AI coach **must** cross-reference with:
 
 ---
 
+#### Sustainability Profile (Race Estimation)
+
+The capability metrics above track adaptation direction (deltas) and session execution quality (durability, EF, HRRc). **Sustainability Profile** answers a different question: *what can this athlete sustain right now?* — the foundation for race performance estimation.
+
+**Data Source:** The `capability.sustainability_profile` object provides per-sport power and HR sustainability at race-relevant anchor durations, fetched from a single 42-day window via sport-filtered `power-curves` and `hr-curves` API calls. Each sport family that has recent training data gets its own block.
+
+**Three Model Layers (Cycling Only):**
+
+At each anchor duration, cycling provides three power estimates — the divergence between them IS the coaching signal:
+
+1. **Actual MMP** — observed best effort in the 42-day window. Ground truth, but training-context-dependent (athlete may not have produced a true max at every duration).
+2. **Coggan Duration Factors** — sustainable power as % of athlete-set FTP, from the standard reference table (Allen & Coggan, *Training and Racing with a Power Meter*, 3rd ed.). Midpoints of published ranges:
+
+| Duration | Factor | Range | Interpretation |
+|----------|--------|-------|----------------|
+| 5 min    | 1.06   | 1.00–1.12 | MAP / VO₂max ceiling |
+| 10 min   | 0.97   | 0.94–1.00 | Upper threshold |
+| 20 min   | 0.93   | 0.91–0.95 | ~FTP test effort |
+| 30 min   | 0.90   | 0.88–0.93 | Threshold sustainability |
+| 60 min   | 0.86   | 0.83–0.90 | TT pacing target |
+| 90 min   | 0.82   | 0.78–0.85 | Long TT / road race |
+| 2 h      | 0.78   | 0.75–0.82 | Endurance event floor |
+
+3. **CP/W′ Model** — `P = CP + W′/t` (Skiba et al., 2012). Uses athlete-set FTP as CP proxy and W′ from the Intervals.icu power model. One equation, pre-evaluated at each anchor duration. More physiologically grounded at shorter durations where W′ contribution is meaningful.
+
+**Model Trust by Duration:**
+- **≤20 min:** CP/W′ is primary — W′ depletion dynamics dominate. Coggan is a sanity check.
+- **30 min:** Crossover zone — both models apply. Compare for consistency.
+- **≥60 min:** Coggan duration factors are the established reference — at longer durations, P = CP + W′/t converges to just CP, losing discriminatory power. Coggan's empirical percentages better capture real-world duration-dependent fatigue.
+
+**Model Divergence (`model_divergence_pct`):**
+- `(actual_watts - cp_model_watts) / cp_model_watts × 100`
+- Positive at short durations → strong anaerobic capacity relative to CP, or stale W′ value
+- Negative at short durations → athlete hasn't produced recent maximal short efforts (training gap, not necessarily fitness gap)
+- Positive at long durations → aerobic engine outperforming the model (strong durability)
+- Large divergence at any duration → model inputs (FTP, W′) may be stale — cross-reference with `ftp_staleness_days` and `benchmark_index`
+
+**Non-Cycling Power Sports (SkiErg, Rowing):**
+Actual MMP only. No published Coggan-equivalent duration factors exist. No sport-specific CP/W′ values are typically configured. These fields are absent from non-cycling sport blocks (not null — absent). The AI works with observed data and HR.
+
+**Indoor vs Outdoor (Cycling Only):**
+Power curves are fetched separately for `Ride` and `VirtualRide`. At each anchor, the higher value is used. The `source` flag indicates which environment produced the best effort:
+- `observed_outdoor` — from outdoor rides (Ride type)
+- `observed_indoor` — from indoor rides (VirtualRide type)
+- Indoor MMP is typically 3–5% lower than outdoor (cooling limitations, motivational differences). If the best effort at a race-relevant duration is indoor, the outdoor race ceiling is likely higher. The source flag lets the AI communicate this to the athlete.
+
+**HR Layer (Per-Sport):**
+Each sport block includes `actual_hr` (max sustained HR at each anchor) and `pct_lthr` (as % of that sport's LTHR from the per-sport thresholds map, v11.8). HR curves are sport-filtered — cycling HR comes from cycling rides only, SkiErg HR from SkiErg sessions only. This avoids cross-sport contamination (running HR is typically 5–10 bpm higher than cycling at equivalent physiological effort).
+
+**Coverage and Confidence:**
+- `coverage_ratio` — fraction of anchors with observed actual data. Below 0.5, the profile is heavily model-dependent; communicate uncertainty.
+- `ftp_staleness_days` — days since last FTP change in history. >60 days = high staleness; model predictions should carry wider uncertainty bands.
+- Longer anchors (5400s, 7200s) are increasingly model-dependent — most athletes don't produce true max efforts at 90min+ in training. The AI should note when estimates rely on extrapolation.
+
+**What Stays in the AI Layer (Not Pre-Computed):**
+- Connecting the table to specific `race_calendar` events ("your 40km TT is ~60min, here's your sustainability data at that duration")
+- Terrain and conditions adjustments (elevation, heat, wind, drafting, nutrition strategy)
+- Training trajectory interpretation ("CTL rising + power curve delta improving → race-day ceiling is likely higher than today's table")
+- Pacing strategy (even power, negative split, variable-terrain power management)
+- Confidence narrative wrapping the pre-computed signals
+
+**Sport-Specific Anchor Sets:**
+
+| Sport | Anchors | Rationale |
+|-------|---------|-----------|
+| Cycling | 300s, 600s, 1200s, 1800s, 3600s, 5400s, 7200s | Covers 5min MAP through 2h endurance events |
+| SkiErg | 60s, 120s, 300s, 600s, 1200s, 1800s | Sprint (500m) through 30min events |
+| Rowing | 60s, 120s, 300s, 600s, 1200s, 1800s | Sprint (500m) through 30min events |
+
+**Data Quality Guards:** Per-anchor null if duration not in API response or value is 0/null. W/kg null if weight unavailable. `pct_lthr` null if sport LTHR not configured. Block-level null if sport has <2 valid observed anchors. Weight fallback chain: today's wellness → most recent in wellness history → athlete profile (icu_weight) → null.
+
+**Scope:** Coaching context and race estimation. Not wired into readiness_decision signals. The sustainability profile is a ceiling estimate — actual race-day performance depends on conditions, pacing, nutrition, and freshness that the pre-computed table cannot capture.
+
+---
+
 #### W′ Balance Metrics *(When Interval Data Available)*
 
 If workout files include W′ balance data (from Intervals.icu or WKO), the following metrics provide anaerobic capacity insights:
@@ -1680,7 +1776,7 @@ To ensure AI systems evaluate metrics in the correct order:
 │  • Recovery Index (RI)                                      │
 │  • HRV (vs baseline)                                        │
 │  • RHR (vs baseline)                                        │
-│  • Sleep (quality + hours)                                  │
+│  • Sleep (hours)                                            │
 │                                                             │
 │  → These determine GO / NO-GO for training                  │
 └─────────────────────────────────────────────────────────────┘
@@ -2198,6 +2294,26 @@ This subsection defines the formal self-validation and audit metadata structure 
 | `capability.hr_curve_delta.anchors.{dur}.pct_change` | number/null | Percentage change from previous to current window. Rounded to 1 decimal. Null if either window's value is null. |
 | `capability.hr_curve_delta.rotation_index` | number/null | `mean(60s,300s pct_change) - mean(1200s,3600s pct_change)`. Positive = intensity-biased HR shift, negative = endurance-biased. Null if any component anchor has null pct_change. AMBIGUOUS: rising HR may indicate fitness or fatigue — cross-reference required. |
 | `capability.hr_curve_delta.note` | string | Interpretation guidance for AI coaches. Emphasizes HR ambiguity. |
+| `capability.sustainability_profile.window` | object | `{days, start, end}` — window size and date range for sustainability curves. Default 42 days. |
+| `capability.sustainability_profile.weight_kg` | number/null | Weight used for W/kg calculations. Null if no weight available (all W/kg fields null). |
+| `capability.sustainability_profile.weight_source` | string/null | Source of weight: `wellness_recent`, `wellness_extended`, or `athlete_profile`. Null if unavailable. |
+| `capability.sustainability_profile.{sport}` | object/null | Per-sport sustainability block. Key is sport family: `cycling`, `ski`, `rowing`. Absent if sport has no recent activity data. |
+| `capability.sustainability_profile.{sport}.anchors` | object/null | Per-anchor sustainability data. Keys are duration labels (e.g., `300s`, `1200s`, `3600s`). Null if <2 valid observed anchors. |
+| `capability.sustainability_profile.{sport}.anchors.{dur}.actual_watts` | number/null | Observed MMP at this duration in the 42d window. Null if no effort at this duration or value is 0. |
+| `capability.sustainability_profile.{sport}.anchors.{dur}.actual_wpkg` | number/null | Actual watts / weight_kg. Null if watts or weight unavailable. |
+| `capability.sustainability_profile.{sport}.anchors.{dur}.actual_hr` | number/null | Max sustained HR (bpm) at this duration from sport-filtered HR curves. Null if unavailable. |
+| `capability.sustainability_profile.{sport}.anchors.{dur}.pct_lthr` | number/null | `actual_hr / sport_lthr × 100`. Uses sport-specific LTHR from per-sport thresholds (v11.8). Null if LTHR not configured for this sport. |
+| `capability.sustainability_profile.{sport}.anchors.{dur}.source` | string/null | `observed_outdoor`, `observed_indoor` (cycling only — from Ride vs VirtualRide), or `observed` (non-cycling). Null if no observed data. |
+| `capability.sustainability_profile.{sport}.anchors.{dur}.coggan_watts` | number/null | Cycling only. FTP × Coggan duration factor (midpoint). Null for non-cycling sports or if FTP unavailable. |
+| `capability.sustainability_profile.{sport}.anchors.{dur}.coggan_wpkg` | number/null | Cycling only. Coggan watts / weight_kg. |
+| `capability.sustainability_profile.{sport}.anchors.{dur}.cp_model_watts` | number/null | Cycling only. `CP + W′/t` where CP ≈ FTP, t = anchor duration in seconds. Null if FTP or W′ unavailable. |
+| `capability.sustainability_profile.{sport}.anchors.{dur}.cp_model_wpkg` | number/null | Cycling only. CP model watts / weight_kg. |
+| `capability.sustainability_profile.{sport}.anchors.{dur}.model_divergence_pct` | number/null | Cycling only. `(actual - cp_model) / cp_model × 100`. Positive = actual exceeds model. Null if either value missing. |
+| `capability.sustainability_profile.{sport}.coverage_ratio` | number | Fraction of anchors with observed actual_watts data. 0.0–1.0. Below 0.5 = heavily model-dependent. |
+| `capability.sustainability_profile.cycling.ftp_used` | number/null | Cycling only. Athlete-set FTP used for Coggan and CP/W′ calculations. From sportSettings, not eFTP. |
+| `capability.sustainability_profile.cycling.w_prime_used` | number/null | Cycling only. W′ (joules) from Intervals.icu power model, used for CP/W′ calculations. |
+| `capability.sustainability_profile.cycling.ftp_staleness_days` | number/null | Cycling only. Days since last FTP change in ftp_history.json. >60 = high staleness. |
+| `capability.sustainability_profile.cycling.model_trust_note` | string | Cycling only. Interpretation guidance for model trust by duration. |
 
 ---
 
