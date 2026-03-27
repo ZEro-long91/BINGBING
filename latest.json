@@ -70,7 +70,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-03-27T06:28:16.761626",
+    "last_updated": "2026-03-27T07:03:55.728815",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.86"
@@ -392,7 +392,7 @@
           "weeks_available": 4
         },
         "stream_2": {
-          "planned_tss_delta": 0.61,
+          "planned_tss_delta": 0.67,
           "hard_sessions_planned": 1,
           "race_proximity": null,
           "next_week_load": null,
@@ -432,7 +432,7 @@
     "p_max": 628,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-03-27T06:28:16.760619",
+    "calculation_timestamp": "2026-03-27T07:03:55.727815",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -999,11 +999,11 @@
       "name": "VO2 Max \u89e6\u78b0 (6x3min)",
       "type": "WORKOUT",
       "sport_type": "Ride",
-      "planned_tss": 77,
-      "duration_hours": 1.1,
-      "duration_formatted": "1h6m",
-      "workout_summary": "15m @112W | 2m @172W | 3m | 6\u00d73m @190W / 3m rec | 10m @86W",
-      "description": "Warmup\n- 15m ramp 50-80%\n- 2m 100%\n- 3m Z1\n\nMain Set\n6x\n- 3m 190w (110% FTP)\n- 3m 85w recovery\n\nCool Down\n- 10m 50%"
+      "planned_tss": 85,
+      "duration_hours": 0.96,
+      "duration_formatted": "57m45s",
+      "workout_summary": null,
+      "description": "Warmup\n- 3m 70%\n- 3m 80% \n- 3m 90%\n- 3m 100%\n- 2m  70%\n- 1m 120%\n- 3m Z1 \n\nMain Set\n3x\n- 15s 200%\n- 3m 110% \n- 4m 85w recovery\n- 3m 120%\n- 3m 85w recovery"
     },
     {
       "id": 99917030,
@@ -1020,11 +1020,11 @@
   ],
   "workout_summary_stats": {
     "attempted": 2,
-    "success": 1,
-    "patternA": 1,
+    "success": 0,
+    "patternA": 0,
     "patternB": 0,
     "bail_no_workout_doc": 0,
-    "bail_no_match": 1
+    "bail_no_match": 2
   },
   "weekly_summary": {
     "total_training_hours": 6.78,
